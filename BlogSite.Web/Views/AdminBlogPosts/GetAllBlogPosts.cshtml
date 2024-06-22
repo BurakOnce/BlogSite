@@ -1,0 +1,75 @@
+﻿@model IEnumerable<BlogSite.Web.Models.Domain.BlogPost>
+<div class="bg-secondary bg-opacity-10 py-2">
+    <div class="container">
+        <h1>All Blog Posts</h1>
+    </div>
+</div>
+<div class="blog-container">
+    @foreach (var blog in Model)
+    {
+        <div class="blog-item">
+            <div class="blog-header">
+                <h3>@blog.Heading</h3>
+                <p class="short-description">@blog.ShortDescription</p>
+            </div>
+            <div class="blog-content">
+                <div class="content-fixed-height">
+                    <p>@blog.Content</p>
+                </div>
+            </div>
+            <div class="blog-footer">
+                <p><strong>Published Date:</strong> @blog.PublishedDate.ToString("dd.MM.yyyy")</p>
+                <p><strong>Author:</strong> @blog.Author</p>
+                <p><strong>Visible:</strong> @blog.Visible</p>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .blog-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); /* Minimum 350px genişlikte, sütunların otomatik doldurması */
+        gap: 20px;
+    }
+
+    .blog-item {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 350px; /* Karelerin sabit genişliği */
+        height: 500px; /* Karelerin sabit yüksekliği */
+        overflow: hidden; /* Kaymalara karşı içeriğin sınırlanması */
+        position: relative; /* Kare içinde pozisyonlandırma */
+    }
+
+    .blog-header {
+        padding: 15px;
+        background-color: #f0f0f0;
+    }
+
+    .short-description {
+        margin-bottom: 10px;
+    }
+
+    .blog-content {
+        padding: 15px;
+    }
+
+    .content-fixed-height {
+        max-height: 320px; /* İçerik alanının maksimum yüksekliği */
+        overflow: hidden;
+    }
+
+    .blog-footer {
+        padding: 15px;
+        font-size: 0.9em;
+        color: #666;
+        background-color: #f8f8f8;
+        border-top: 1px solid #ccc;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
